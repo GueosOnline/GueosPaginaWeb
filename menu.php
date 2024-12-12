@@ -40,6 +40,7 @@
                             <i class="fas fa-user" class="btn btn-success me-3"></i> <?php echo $_SESSION['user_name']; ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btn-session">
+                            <li><a class="dropdown-item" href="compras.php">Mis Compras</a></li>
                             <li><a class="dropdown-item" href="logout.php">Cerrar sesión</a></li>
                         </ul>
                     </div>
