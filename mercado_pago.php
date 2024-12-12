@@ -17,6 +17,10 @@ $preference = $client->create([
             "unit_price" => 20000
         ],
     ],
+    "back_urls" => [
+        "success" => "http://localhost:8080/PaginaWeb/captura.php",  // URL de éxito
+        "failure" => "http://localhost:8080/PaginaWeb/Fallo.php", // URL de fracaso
+    ],
 
 ]);
 /*

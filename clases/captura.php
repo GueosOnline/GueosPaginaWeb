@@ -1,7 +1,9 @@
 <?php
 
-require "../config/config.php";
+require '../config/config.php';
 require '../config/database.php';
+
+session_start();
 
 $db = new Database();
 $con = $db->conectar();
@@ -12,7 +14,7 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
 if ($idTransaccion != '') {
 
     $fecha = date("Y-m-d H:i:s");
-    $monto = isset($_SESSION['carrito']['total']) ? $_SESSION['carrito']['total'] : 0;
+    $total = isset($_SESSION['carrito']['total']) ? $_SESSION['carrito']['total'] : 0;
     $idCliente = $_SESSION['user_cliente'];
     $sqlProd = $con->prepare("SELECT email FROM clientes WHERE id=? AND estatus=1");
     $sqlProd->execute([$idCliente]);
@@ -20,7 +22,7 @@ if ($idTransaccion != '') {
     $email = $row_cliente['email'];
 
     $comando = $con->prepare("INSERT INTO compra (fecha, status, email, id_cliente, total, id_transaccion, medio_pago) VALUES(?,?,?,?,?,?,?)");
-    $comando->execute([$fecha, $status, $email, $idCliente, $monto, $idTransaccion, 'MP']);
+    $comando->execute([$fecha, $status, $email, $idCliente, $total, $idTransaccion, 'MP']);
     $id = $con->lastInsertId();
 
     if ($id > 0) {
@@ -29,6 +31,7 @@ if ($idTransaccion != '') {
         if ($productos != null) {
             foreach ($productos as $clave => $cantidad) {
                 $sqlProd = $con->prepare("SELECT id, nombre, precio, descuento FROM productos WHERE id=? AND activo=1");
+                $sqlProd->execute([$clave]);
                 $row_prod = $sqlProd->fetch(PDO::FETCH_ASSOC);
 
                 $precio = $row_prod['precio'];

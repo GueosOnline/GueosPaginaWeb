@@ -16,7 +16,6 @@ $con = $db->conectar();
 
 $productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
 
-//print_r($_SESSION);
 
 $lista_carrito = array();
 
@@ -102,7 +101,7 @@ if ($productos != null) {
                                         <tr>
                                             <td><?php echo $nombre; ?> </td>
                                             <td>
-                                                <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal, 2, '.', ','); ?></div>
+                                                <?php echo $cantidad . ' x ' . MONEDA . '<b>' . number_format($subtotal, 2, '.', ',') . '</b>'; ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -128,11 +127,10 @@ if ($productos != null) {
     </main>
 
     <?php
-
     $preference = $client->create([
         "items" => $productos_mp,  // Usamos el array completo de productos
         "back_urls" => [
-            "success" => "http://localhost:8080/PaginaWeb/captura.php",  // URL de éxito
+            "success" => "http://localhost:8080/PaginaWeb/clases/captura.php",  // URL de éxito
             "failure" => "http://localhost:8080/PaginaWeb/Fallo.php",    // URL de fracaso
         ],
         "auto_return" => "approved",
