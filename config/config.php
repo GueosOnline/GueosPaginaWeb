@@ -1,5 +1,23 @@
 <?php
 
+$path = dirname(__FILE__);
+
+require_once $path . '/database.php';
+require_once $path . '/../admin/clases/cifrado.php';
+
+$db = new Database();
+$con = $db->conectar();
+
+$sql = "SELECT nombre, valor  FROM configuracion";
+$resultado = $con->query($sql);
+$datos = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+$config = [];
+
+foreach ($datos as $dato) {
+    $config[$dato['nombre']] = $dato['valor'];
+}
+
 //Datos del sistema
 define("CLIENT_ID", "APR.wqc-354*");
 define("TOKEN_MP", "TEST-5643175586443360-120516-eee2547feaf32253850f8c060f52cec7-192220680");
@@ -9,10 +27,10 @@ define("KEY_TOKEN", "APR.wqc-354*");
 define("MONEDA", "$");
 
 //Datos para el envio de correo electronico
-define("MAIL_HOST", "mail.gueos.com.co");
-define("MAIL_USER", "pruebas@gueos.com.co");
-define("MAIL_PASS", "GueosPruebas");
-define("MAIL_PORT", "465");
+define("MAIL_HOST", $config['correo_smtp']);
+define("MAIL_USER", $config['correo_email']);
+define("MAIL_PASS", descifrar($config['correo_password']));
+define("MAIL_PORT", $config['correo_puerto']);
 
 session_start();
 

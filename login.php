@@ -1,8 +1,8 @@
 <?php
 
-require 'config/config.php';
-require 'config/database.php';
-require 'clases/clienteFunciones.php';
+require_once 'config/config.php';
+require_once 'config/database.php';
+require_once 'clases/clienteFunciones.php';
 
 $db = new Database();
 $con = $db->conectar();

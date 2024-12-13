@@ -47,6 +47,12 @@ if ($id == '' || $token == '') {
                 }
                 $dir->close();
             }
+
+            $sqlCaracter = $con->prepare("SELECT DISTINCT(det.id_caracteristica) AS idCat, cat.caracteristica FROM det_prod_caracter AS det INNER JOIN caracteristicas AS cat ON det.id_caracteristica=cat.id WHERE det.id_producto =?");
+            $sqlCaracter->execute([$id]);
+        } else {
+            echo 'Error al procesar la petición';
+            exit;
         }
     } else {
         echo 'Error al procesar la petición';
@@ -127,13 +133,33 @@ if ($id == '' || $token == '') {
                     </p>
 
                     <div class="col-3 my-3">
+
+                        <?php
+
+                        while ($row_cat = $sqlCaracter->fetch(PDO::FETCH_ASSOC)) {
+                            $idCat = $row_cat['idCat'];
+                            echo $row_cat['caracteristica'] . ": ";
+
+                            echo "<select class='form-select' id='cat_$idCat'>";
+
+                            $sqlDet = $con->prepare("SELECT id, valor, stock FROM det_prod_caracter WHERE id_producto=? AND id_caracteristica=?");
+                            $sqlDet->execute([$id, $idCat]);
+                            while ($row_det = $sqlDet->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<option id='" . $row_det['id'] . "'>" . $row_det['valor'] . "</option>";
+                            }
+                            echo "</select>";
+                        }
+                        ?>
+                    </div>
+
+                    <div class="col-3 my-3">
                         Cantidad<input class="form-control" id="cantidad" name="cantidad" type="number" min="1" max="10" value="1">
                     </div>
 
 
                     <div class="d-grid gap-3 col-7 mx-auto">
                         <button class="btn btn-primary" type="button">Comprar</button>
-                        <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $id; ?>, cantidad.value, '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
+                        <button class="btn btn-outline-primary" type="button" id="btnAgregar">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
@@ -146,6 +172,12 @@ if ($id == '' || $token == '') {
         crossorigin="anonymous"></script>
 
     <script>
+        let btnAgregar = document.getElementById("btnAgregar")
+        let inputCantidad = document.getElementById("cantidad").value
+        btnAgregar.onclick = addProducto(<?php echo $id; ?>, inputCantidad '<?php echo $token_tmp; ?>')
+
+
+
         function addProducto(id, cantidad, token) {
             let url = 'clases/carrito.php'
             let formData = new FormData()
