@@ -4,6 +4,15 @@ require '../config/config.php';
 require '../header.php';
 require '../clases/cifrado.php';
 
+if (!isset($_SESSION['user_type'])) {
+    header('Location: ../index.php');
+    exit;
+}
+
+if ($_SESSION['user_type'] != 'admin') {
+    header('Location: ../../index.php');
+    exit;
+}
 
 $db = new Database();
 $con = $db->conectar();
@@ -17,9 +26,6 @@ $config = [];
 foreach ($datos as $dato) {
     $config[$dato['nombre']] = $dato['valor'];
 }
-
-
-
 
 ?>
 <main>
