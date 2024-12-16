@@ -1,9 +1,9 @@
 <?php
 require '../config/database.php';
 require '../config/config.php';
-require '../header.php';
 require '../clases/cifrado.php';
 
+//Seguridad URL
 if (!isset($_SESSION['user_type'])) {
     header('Location: ../index.php');
     exit;
@@ -13,6 +13,9 @@ if ($_SESSION['user_type'] != 'admin') {
     header('Location: ../../index.php');
     exit;
 }
+
+require '../header.php';
+
 
 $db = new Database();
 $con = $db->conectar();

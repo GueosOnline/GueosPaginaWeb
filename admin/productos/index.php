@@ -26,7 +26,7 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
 <main>
 
     <div class="container-fluid px-4">
-        <h2 class="mt-3">categorias</h2>
+        <h2 class="mt-3">Productos</h2>
 
         <a href="nuevo.php" class="btn btn-primary">Nuevo</a>
         <div class="table-responsive">
@@ -40,22 +40,7 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($categorias as $categoria) { ?>
-                        <tr>
-                            <td><?php echo $categoria['id']; ?></td>
-                            <td><?php echo $categoria['nombre']; ?></td>
-                            <td><a class="btn btn-warning btn-sm" href="edita.php?id=<?php echo $categoria['id']; ?>">Editar</a></td>
-                            <td>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalElimina" data-bs-id="  <?php echo $categoria['id']; ?>"> Eliminar
 
-                                </button>
-
-
-
-                            </td>
-                        </tr>
-
-                    <?php } ?>
                 </tbody>
             </table>
         </div>
