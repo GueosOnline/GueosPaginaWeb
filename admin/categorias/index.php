@@ -46,12 +46,7 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $categoria['nombre']; ?></td>
                             <td><a class="btn btn-warning btn-sm" href="edita.php?id=<?php echo $categoria['id']; ?>">Editar</a></td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalElimina" data-bs-id="  <?php echo $categoria['id']; ?>"> Eliminar
-
-                                </button>
-
-
-
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalElimina" data-bs-id="  <?php echo $categoria['id']; ?>"> Eliminar </button>
                             </td>
                         </tr>
 

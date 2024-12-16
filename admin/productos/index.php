@@ -18,9 +18,9 @@ require '../header.php';
 $db = new Database();
 $con = $db->conectar();
 
-$sql = "SELECT id, nombre FROM categorias WHERE activo =1";
+$sql = "SELECT id, nombre, descripcion, precio, descuento, stock, id_categoria FROM productos WHERE activo =1";
 $resultado = $con->query($sql);
-$categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
+$productos = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <main>
@@ -30,17 +30,31 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
         <a href="nuevo.php" class="btn btn-primary">Nuevo</a>
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover my-5">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Stock</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($productos as $producto) { ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($producto['nombre'], ENT_QUOTES); ?></td>
+                            <td><?php echo $producto['precio']; ?></td>
+                            <td><?php echo $producto['stock']; ?></td>
+                            <td>
+                                <a href="edita.php?id=<?php echo $producto['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
 
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalElimina" data-bs-id="  <?php echo $producto['id']; ?>"> Eliminar </button>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

@@ -4,7 +4,7 @@ use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\MercadoPagoConfig;
 
 require 'config/config.php';
-require 'config/database.php';
+require_once 'config/database.php';
 require 'vendor/autoload.php';
 
 MercadoPagoConfig::setAccessToken(TOKEN_MP);

@@ -2,7 +2,7 @@
 
 // Se incluyen los archivos de configuración y conexión a la base de datos
 require '../config/config.php';
-require '../config/database.php';
+require_once '../config/database.php';
 
 // Verifica si la solicitud POST contiene la acción a realizar
 if (isset($_POST['action'])) {

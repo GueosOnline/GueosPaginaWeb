@@ -1,7 +1,7 @@
 <?php
 
 require 'config/config.php';
-require 'config/database.php';
+require_once 'config/database.php';
 require 'clases/clienteFunciones.php';
 
 $db = new Database();
