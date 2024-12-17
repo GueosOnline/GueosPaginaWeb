@@ -93,32 +93,7 @@ if (!empty($_POST)) {
 
 <body>
     <!--Barra de Navegación-->
-    <header>
-        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a href="#" class="navbar-brand">
-                    <img src="images/productos/1/Logo.png" alt="Logo" class="img-fluid" style="max-height: 60px; margin-right: 10px;">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarHeader">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">Catalogo </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link ">Contacto </a>
-                        </li>
-                    </ul>
-                    <a href="checkout.php" class="btn btn-primary">
-                        Carrito <span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span>
-                    </a>
-                </div>
-            </div>
-    </header>
-
+    <?php include 'menu.php'; ?>
     <!--Contenido-->
     <main>
         <div class="container">
@@ -129,37 +104,37 @@ if (!empty($_POST)) {
             <form class="row g-3" action="registro.php" method="post" autocomplete="off">
                 <div class="col-md-6">
                     <label for="nombres"><span class="text-danger">*</span>Nombres</label>
-                    <input type="text" name="nombres" id="nombres" class="form-control" requireda>
+                    <input type="text" name="nombres" id="nombres" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                     <label for="apellidos"><span class="text-danger">*</span>Apellidos</label>
-                    <input type="text" name="apellidos" id="apellidos" class="form-control" requireda>
+                    <input type="text" name="apellidos" id="apellidos" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                     <label for="email"><span class="text-danger">*</span>Correo Electronico</label>
-                    <input type="email" name="email" id="email" class="form-control" requireda>
+                    <input type="email" name="email" id="email" class="form-control" required>
                     <span id="validaEmail" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
                     <label for="telefono"><span class="text-danger">*</span>Telefono</label>
-                    <input type="tel" name="telefono" id="telefono" class="form-control" requireda>
+                    <input type="text" name="telefono" id="telefono" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                 </div>
                 <div class="col-md-6">
                     <label for="cedula"><span class="text-danger">*</span>Cedula</label>
-                    <input type="text" name="cedula" id="cedula" class="form-control" requireda>
+                    <input type="text" name="cedula" id="cedula" class="form-control " oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                 </div>
                 <div class="col-md-6">
                     <label for="usuario"><span class="text-danger">*</span>Usuario</label>
-                    <input type="text" name="usuario" id="usuario" class="form-control" requireda>
+                    <input type="text" name="usuario" id="usuario" class="form-control" required>
                     <span id="validaUsuario" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
                     <label for="password"><span class="text-danger">*</span>Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" requireda>
+                    <input type="password" name="password" id="password" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                     <label for="repassword"><span class="text-danger">*</span>Repetir Contraseña</label>
-                    <input type="password" name="repassword" id="repassword" class="form-control" requireda>
+                    <input type="password" name="repassword" id="repassword" class="form-control" required>
                 </div>
 
                 <i><b>Nota: </b>Los campos con asterisco son obligatorios</i>

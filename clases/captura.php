@@ -3,8 +3,6 @@
 require '../config/config.php';
 require_once '../config/database.php';
 
-session_start();
-
 $db = new Database();
 $con = $db->conectar();
 
@@ -45,8 +43,13 @@ if ($idTransaccion != '') {
             require 'Mailer.php';
 
             $asunto = "Detalles de su pedido";
-            $cuerpo = "<h4>Gracias por su compra</h4>";
-            $cuerpo .= '<p>El ID de su compra es: <b>' . $idTransaccion . '</b></p>';
+
+            $cuerpo = '<p><b>ID de la compra: </b>' . $idTransaccion . '</p>';
+            $cuerpo .= '<p><b>Fecha: </b>' . date("d/m/Y h:i A") . '</b></p>';
+            $cuerpo .= '<p><b>Total: </b>' . $total . '</b></p><br>';
+            $cuerpo .= '<p>Si desea ver mas detalles visite la pagina: https://www.gueos.com.co/</p>';
+
+            $cuerpo .= "<h4>Gracias por su compra y escoger a Representaciones Gueos Ltda.</h4>";
 
             $mailer = new Mailer();
             $mailer->enviarEmail($email, $asunto, $cuerpo);
@@ -56,19 +59,3 @@ if ($idTransaccion != '') {
         header("Location: " . SITE_URL . "/completado.php?key=" . $idTransaccion);
     }
 }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-</body>
-
-</html>

@@ -100,9 +100,7 @@ if ($productos != null) {
 
                                         <tr>
                                             <td><?php echo $nombre; ?> </td>
-                                            <td>
-                                                <?php echo $cantidad . ' x ' . MONEDA . '<b>' . number_format($subtotal, 2, '.', ',') . '</b>'; ?>
-                                            </td>
+                                            <td> <?php echo $cantidad . ' x ' . MONEDA . '<b>' . number_format($subtotal, 2, '.', ',') . '</b>'; ?> </td>
                                         </tr>
                                     <?php } ?>
 
@@ -115,18 +113,20 @@ if ($productos != null) {
                                         </td>
                                     </tr>
 
+
+                                <?php } ?>
                             </tbody>
-                        <?php } ?>
                         </table>
                     </div>
                 </div>
-                <?php
-                ?>
             </div>
         </div>
     </main>
 
     <?php
+
+    $_SESSION['carrito']['total'] = $total;
+
     $preference = $client->create([
         "items" => $productos_mp,  // Usamos el array completo de productos
         "back_urls" => [

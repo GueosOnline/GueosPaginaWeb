@@ -82,6 +82,7 @@ if (!empty($_POST)) {
             <img src="images/productos/1/Logo.png" class="img-fluid">
         </div>
         <h3>Recuperar Contraseña</h3>
+
         <?php mostrarMensajes($errors); ?>
         <form action="recupera.php" method="post" class="row g-3" autocomplete="off">
 

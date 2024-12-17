@@ -36,26 +36,28 @@ foreach ($datos as $dato) {
     <div class="container-fluid px-4">
         <h1 class="mt-4">Configuracion</h1>
         <form action="guarda.php" method="post">
+
+            <?php echo descifrar($config['correo_password']); ?>
             <div class="row">
                 <div class="col-6">
                     <label for="stmp">STMP</label>
-                    <input class="form-control" type="text" name="smtp" id="smtp" value="<?php echo $config['correo_smtp'] ?>">
+                    <input class="form-control" type="text" name="smtp" id="smtp" value="<?php echo $config['correo_smtp']; ?>">
                 </div>
 
                 <div class="col-6">
                     <label for="puerto">Puerto</label>
-                    <input class="form-control" type="text" name="puerto" id="puerto" value="<?php echo $config['correo_puerto'] ?>">
+                    <input class="form-control" type="text" name="puerto" id="puerto" value="<?php echo $config['correo_puerto']; ?>">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-6">
                     <label for="email">Correo electronico</label>
-                    <input class="form-control" type="email" name="email" id="email" value="<?php echo $config['correo_email'] ?>">
+                    <input class="form-control" type="email" name="email" id="email" value="<?php echo $config['correo_email']; ?>">
                 </div>
                 <div class="col-6">
                     <label for="password">Contraseña</label>
-                    <input class="form-control" type="password" name="password" id="password" value="<?php echo $config['correo_password'] ?>">
+                    <input class="form-control" type="password" name="password" id="password" value="<?php echo $config['correo_password']; ?>">
                 </div>
             </div>
 

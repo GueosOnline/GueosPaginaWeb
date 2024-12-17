@@ -41,7 +41,7 @@ if ($id_transaccion == '') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="css/estilos.css" rel="stylesheet">
 
@@ -64,20 +64,20 @@ if ($id_transaccion == '') {
 
                 <div class="row">
                     <div class="col">
-                        <b>Folio de la compra:</b><?php echo $id_transaccion; ?><br>
-                        <b>Fecha de compra:</b><?php echo $fecha; ?><br>
-                        <b>Total:</b><?php echo MONEDA . number_format($total, 2, '.', ','); ?><br>
+                        <b>Folio de la compra: </b><?php echo $id_transaccion; ?><br>
+                        <b>Fecha de compra: </b><?php echo $fecha; ?><br>
+                        <b>Total: </b><?php echo MONEDA . number_format($total, 2, '.', ','); ?><br>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Cantidad</th>
+                                    <th style="text-align: center">Cantidad</th>
                                     <th>Producto</th>
-                                    <th>importe</th>
+                                    <th>Precio</th>
                                 </tr>
                             </thead>
 
@@ -85,7 +85,7 @@ if ($id_transaccion == '') {
                                 <?php while ($row_det = $sqlDet->fetch(PDO::FETCH_ASSOC)) {
                                     $importe = $row_det['precio'] * $row_det['cantidad'];  ?>
                                     <tr>
-                                        <td><?php echo $row_det['cantidad']; ?></td>
+                                        <td style="text-align: center"><?php echo $row_det['cantidad']; ?></td>
                                         <td><?php echo $row_det['nombre']; ?></td>
                                         <td><?php echo $importe; ?></td>
                                     </tr>

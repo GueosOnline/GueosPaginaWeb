@@ -29,17 +29,19 @@ class Mailer
             //Recipients
 
             //Correo emisor y nombre
-            $mail->setFrom(MAIL_USER, 'TIENDA CDP');
+            $mail->setFrom(MAIL_USER, 'TIENDA GUEOS');
             //Correo receptor y nombre
-            $mail->addAddress($email, '');     //Add a recipient
+            $mail->addAddress($email);     //Add a recipient
 
             //Contenido
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Correo GUEOS';
+            $mail->Subject = $asunto;
 
             //Cuerpo del correo
-            $mail->Body    = mb_convert_encoding($cuerpo, 'ISO-8859-1', 'UTF-8');
-            $mail->setLanguage('es', '../phpmailer/language/phpmailer.lang-es.php');
+
+            $mail->CharSet = 'UTF-8';
+            $mail->Body    = $cuerpo;
+            $mail->setLanguage('es', __DIR__ . '/../phpmailer/src/language/phpmailer.lang-es.php');
 
             //Enviar correo
             if ($mail->send()) {

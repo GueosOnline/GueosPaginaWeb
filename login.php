@@ -50,7 +50,7 @@ if (!empty($_POST)) {
 
     <main class="form-login m-auto pt-4">
         <div class="text-center m-auto mb-5 mt-5">
-            <img src="images/productos/1/Logo.png" class="img-fluid">
+            <img src="images/Logo.png" class="img-fluid">
         </div>
         <h2 class="mb-5">Iniciar Sesión</h2>
         <?php mostrarMensajes($errors); ?>
