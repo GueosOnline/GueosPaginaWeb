@@ -29,13 +29,18 @@ class Mailer
             //Recipients
 
             //Correo emisor y nombre
-            $mail->setFrom(MAIL_USER, 'TIENDA GUEOS');
+            $mail->setFrom(MAIL_USER, 'REPRESENTACIONES GUEOS');
             //Correo receptor y nombre
             $mail->addAddress($email);     //Add a recipient
+
+            //logo Empresa
 
             //Contenido
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $asunto;
+
+            //Copia de correos enviados 
+            $mail->addCC(MAIL_USER);
 
             //Cuerpo del correo
 

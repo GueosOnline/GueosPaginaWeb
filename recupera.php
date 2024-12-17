@@ -38,7 +38,7 @@ if (!empty($_POST)) {
                 $url = SITE_URL . '/reset_password.php?id=' . $user_id . '&token=' . $token;
 
                 $asunto = "Recuperar Contraseña - Representaciones Gueos LTDA.";
-                $cuerpo = "Estimado $nombres: <br> Si usted ha solicitado el cambio de contraseña de click en el siguiente link <a href='$url'>$url</a>.";
+                $cuerpo .= "Estimado $nombres: <br> Si usted ha solicitado el cambio de contraseña de click en el siguiente link <a href='$url'>$url</a>.";
 
                 $cuerpo .= "<br>Si no realizo esta petición ignore este correo.";
 
@@ -79,7 +79,7 @@ if (!empty($_POST)) {
     <!--Contenido-->
     <main class="form-login m-auto pt-4">
         <div class="text-center m-auto mb-5 mt-5">
-            <img src="images/productos/1/Logo.png" class="img-fluid">
+            <img src="images/Logo.png" class="img-fluid">
         </div>
         <h3>Recuperar Contraseña</h3>
 

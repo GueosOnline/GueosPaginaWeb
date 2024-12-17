@@ -47,7 +47,7 @@ $sql->execute([$idCliente]);
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Referencia: <?php echo $row['id_transaccion']; ?></h5>
-                        <p class="card-text">Total:<?php echo $row['total']; ?></p>
+                        <p class="card-text">Total: <?php echo MONEDA . number_format($row['total'], 2, '.', ','); ?></p>
                         <a href="compra_detalle.php?orden=<?php echo $row['id_transaccion'] ?>&token=<?php echo $token; ?>" class="btn btn-primary">Ver compra</a>
                     </div>
                 </div>

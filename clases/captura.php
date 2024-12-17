@@ -1,7 +1,6 @@
 <?php
 
 require '../config/config.php';
-require_once '../config/database.php';
 
 $db = new Database();
 $con = $db->conectar();
@@ -37,17 +36,20 @@ if ($idTransaccion != '') {
                 $precio_desc = $precio - (($precio * $descuento) / 100);
 
                 $sql = $con->prepare("INSERT INTO detalle_compra (id_compra, id_producto, nombre, cantidad, precio) VALUES(?,?,?,?,?)");
-                $sql->execute([$id, $row_prod['id'], $row_prod['nombre'], $cantidad, $precio_desc]);
+                if ($sql->execute([$id, $row_prod['id'], $row_prod['nombre'], $cantidad, $precio_desc])) {
+                    restarStock($row_prod['id'], $cantidad, $con);
+                }
             }
 
             require 'Mailer.php';
 
             $asunto = "Detalles de su pedido";
 
-            $cuerpo = '<p><b>ID de la compra: </b>' . $idTransaccion . '</p>';
+            $cuerpo = ' <img src="../images/Logo.png" alt="Logo" style="width:100px;height:auto;"></p>';
+            $cuerpo .= '<p><b>ID de la compra: </b>' . $idTransaccion . '</p>';
             $cuerpo .= '<p><b>Fecha: </b>' . date("d/m/Y h:i A") . '</b></p>';
-            $cuerpo .= '<p><b>Total: </b>' . $total . '</b></p><br>';
-            $cuerpo .= '<p>Si desea ver mas detalles visite la pagina: https://www.gueos.com.co/</p>';
+            $cuerpo .= '<p><b>Total: </b>' . MONEDA . number_format($total, 2, '.', ',') . '</b></p><br>';
+            $cuerpo .= '<p>Si desea ver mas detalles visite la pagina   : https://www.gueos.com.co/</p>';
 
             $cuerpo .= "<h4>Gracias por su compra y escoger a Representaciones Gueos Ltda.</h4>";
 
@@ -58,4 +60,10 @@ if ($idTransaccion != '') {
         unset($_SESSION['carrito']);
         header("Location: " . SITE_URL . "/completado.php?key=" . $idTransaccion);
     }
+}
+
+function restarStock($id, $cantidad, $con)
+{
+    $sql = $con->prepare("UPDATE productos SET stock = stock - ? WHERE id=?");
+    $sql->execute([$cantidad, $id]);
 }

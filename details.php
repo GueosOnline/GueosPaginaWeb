@@ -110,8 +110,6 @@ if ($id == '' || $token == '') {
                         </button>
                     </div>
 
-                    <!--<img src="images/productos/<? #php echo $id; 
-                                                    ?>/principal.jpg"> -->
                 </div>
                 <div class="col-md-6 order-md-3">
                     <h2><?php echo $nombre; ?></h2>
@@ -195,6 +193,8 @@ if ($id == '' || $token == '') {
                     if (data.ok) {
                         let elemento = document.getElementById("num_cart")
                         elemento.innerHTML = data.numero
+                    } else {
+                        alert("No hay suficientes existencias")
                     }
                 })
         }

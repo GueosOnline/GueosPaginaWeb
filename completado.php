@@ -87,7 +87,7 @@ if ($id_transaccion == '') {
                                     <tr>
                                         <td style="text-align: center"><?php echo $row_det['cantidad']; ?></td>
                                         <td><?php echo $row_det['nombre']; ?></td>
-                                        <td><?php echo $importe; ?></td>
+                                        <td><?php echo MONEDA . number_format($importe, 2, '.', ','); ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

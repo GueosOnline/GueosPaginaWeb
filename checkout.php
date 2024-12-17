@@ -1,7 +1,7 @@
 <?php
 
 require 'config/config.php';
-require_once 'config/database.php';
+
 $db = new Database();
 $con = $db->conectar();
 
@@ -35,6 +35,8 @@ if ($productos != null) {
 
     <!-- Boostrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Enlace a la hoja de estilo de Font Awesome para los íconos (por ejemplo, íconos de carrito y usuario) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="css/estilos.css" rel="stylesheet">
 </head>
 
@@ -43,7 +45,7 @@ if ($productos != null) {
     <?php include 'menu.php'; ?>
 
     <!--Contenido-->
-    <main>
+    <main class="flex-shrink-0">
         <div class="container">
             <div class="table-responsive">
                 <table class="table">
@@ -77,13 +79,13 @@ if ($productos != null) {
                                     <td><?php echo $nombre; ?> </td>
                                     <td><?php echo MONEDA . number_format($precio_desc, 2, '.', ','); ?></td>
                                     <td>
-                                        <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad ?>" size="5" id="cantidad_<?php echo $_id; ?>" onchange="actualizaCantidad(this.value ,<?php echo $_id; ?>)">
+                                        <input style="text-align: center; " type="number" min="1" max="10" step="1" value="<?php echo $cantidad ?>" size="3" id="cantidad_<?php echo $_id; ?>" onchange="actualizaCantidad(this.value ,<?php echo $_id; ?>)">
                                     </td>
                                     <td>
                                         <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal, 2, '.', ','); ?></div>
                                     </td>
                                     <td>
-                                        <a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a>
+                                        <a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -186,6 +188,10 @@ if ($productos != null) {
                             minimumFractionDigits: 2
                         }).format(total)
                         document.getElementById('total').innerHTML = '<?php echo MONEDA; ?>' + total
+                    } else {
+                        let inputCantidad = document.getElementById('cantidad_' + id)
+                        inputCantidad.value = data.cantidadAnterior
+                        alert("No hay suficientes existencias");
                     }
                 })
         }

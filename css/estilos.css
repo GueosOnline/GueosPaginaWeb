@@ -13,3 +13,36 @@ main>.container {
     background-position: center top;
     background-repeat: no-repeat;
 }
+
+/* Aseguramos que todas las imágenes dentro de los productos tengan el mismo tamaño */
+.card img {
+    width: 100%;
+    /* Hace que la imagen ocupe todo el ancho disponible dentro de su contenedor */
+    height: 250px;
+    /* Establece una altura fija para todas las imágenes */
+    object-fit: cover;
+    /* Asegura que la imagen cubra el área sin deformarse */
+    object-position: center;
+    /* Centra la imagen si es más grande que el contenedor */
+}
+
+/* Opcional: Puedes ajustar la altura de las imágenes para que no se deformen */
+.card-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    display: -webkit-box;
+    /* Usamos el modelo de caja flexible para mostrar solo un número de líneas */
+    -webkit-line-clamp: 2;
+    /* Limita el texto a 2 líneas */
+    -webkit-box-orient: vertical;
+    /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;
+    /* Oculta el texto que no cabe en el contenedor */
+    text-overflow: ellipsis;
+    /* Agrega los puntos suspensivos (...) */
+}
