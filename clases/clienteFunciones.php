@@ -72,7 +72,7 @@ function emailExiste($email, $con)
 function mostrarMensajes(array $errors)
 {
     if (count($errors) > 0) {
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert"><ul>';
+        echo '<div class="alert alert-dismissible fade show" role="alert"><ul>';
         foreach ($errors as $error) {
             echo '<li>' . $error . '</li>';
         }

@@ -26,7 +26,7 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
 <main>
 
     <div class="container-fluid px-4">
-        <h2 class="mt-3">categorias</h2>
+        <h2 class="mt-3">Categorias</h2>
 
         <a href="nuevo.php" class="btn btn-primary">Nuevo</a>
         <div class="table-responsive">

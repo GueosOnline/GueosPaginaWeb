@@ -3,15 +3,7 @@ main>.container {
 }
 
 .form-login {
-    text-align: center;
     max-width: 350px;
-}
-
-.body-login {
-    background-image: url();
-    background-size: 100% auto;
-    background-position: center top;
-    background-repeat: no-repeat;
 }
 
 /* Aseguramos que todas las imágenes dentro de los productos tengan el mismo tamaño */
@@ -28,21 +20,6 @@ main>.container {
 
 /* Opcional: Puedes ajustar la altura de las imágenes para que no se deformen */
 .card-body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
-.card-title {
-    display: -webkit-box;
-    /* Usamos el modelo de caja flexible para mostrar solo un número de líneas */
-    -webkit-line-clamp: 2;
-    /* Limita el texto a 2 líneas */
-    -webkit-box-orient: vertical;
-    /* Evita que el texto se divida en varias líneas */
-    overflow: hidden;
-    /* Oculta el texto que no cabe en el contenedor */
-    text-overflow: ellipsis;
-    /* Agrega los puntos suspensivos (...) */
+    justify-content: space-between;
 }
