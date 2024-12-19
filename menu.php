@@ -37,7 +37,7 @@
                     </li>
                 </ul>
                 <a href="checkout.php" class="btn btn-primary me-3"><i class="fas fa-shopping-cart"></i>
-                    <span id="num_cart" class="badge bg-light text-dark rounded-pill fs-7"><?php if ($num_cart != 0) echo $num_cart; ?></span>
+                    Carrito <span id="num_cart" class="badge bg-light text-dark rounded-pill fs-7"><?php if ($num_cart != 0) echo $num_cart; ?></span>
                 </a>
 
                 <?php if (isset($_SESSION['user_id'])) { ?>

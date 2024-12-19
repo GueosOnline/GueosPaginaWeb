@@ -7,9 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Dashboard - SB Admin</title>
     <link href="<?php echo ADMIN_URL; ?>css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!--CDN Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--CDN FontAwesome-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!--CDN Chartjs-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -47,6 +52,11 @@
                         <a class="nav-link" href="<?php echo ADMIN_URL; ?>configuracion">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Configuracion
+                        </a>
+
+                        <a class="nav-link" href="<?php echo ADMIN_URL; ?>usuarios">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Usuarios
                         </a>
 
                         <a class="nav-link" href="<?php echo ADMIN_URL; ?>categorias">
