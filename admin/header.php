@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Dashboard - SB Admin</title>
     <link href="<?php echo ADMIN_URL; ?>css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
@@ -55,6 +57,10 @@
                         <a class="nav-link" href="<?php echo ADMIN_URL; ?>productos">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Productos
+                        </a>
+                        <a class="nav-link" href="<?php echo ADMIN_URL; ?>compras">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Compras
                         </a>
 
                         <div class="sb-sidenav-menu-heading">Interface</div>
