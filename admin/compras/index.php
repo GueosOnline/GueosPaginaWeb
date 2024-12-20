@@ -26,6 +26,8 @@ require '../header.php';
     <div class="container">
         <h4>Compras</h4>
 
+
+        <a href="genera_reporte_compras.php" class="btn btn-success btn-sm">Rerporte de compras</a>
         <hr>
 
         <table class="table">
