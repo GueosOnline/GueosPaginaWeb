@@ -7,6 +7,9 @@ $con = $db->conectar();
 
 $idCategoria = $_GET['cat'] ?? '';
 $orden = $_GET['orden'] ?? '';
+$buscar = $_GET['q'] ?? '';
+
+$filtro = '';
 
 $orders = [
     'asc' => 'nombre ASC',
@@ -21,15 +24,34 @@ if (!empty($order)) {
     $order = "ORDER BY $order";
 }
 
-if (!empty($idCategoria)) {
-    $comando = $con->prepare("SELECT id, nombre, precio, descuento FROM productos WHERE activo=1 AND id_categoria = ? $order");
-    $comando->execute([$idCategoria]);
-} else {
-    $comando = $con->prepare("SELECT id, nombre, precio, descuento FROM productos WHERE activo=1 $order");
-    $comando->execute();
+$params = [];
+$query = "SELECT id, nombre, precio, descuento FROM productos WHERE activo=1 $order";
+
+if ($buscar != '') {
+    $query .= " AND nombre LIKE ?";
+    $params[] = "%$buscar%";
+    //$filtro = "AND (nombre LIKE '%$buscar%' || descripcion LIKE '%$buscar%')";
 }
 
-$resultado = $comando->fetchAll(PDO::FETCH_ASSOC);
+if ($idCategoria != '') {
+    $query .= " AND id_categoria = ?";
+    $params[] = $idCategoria;
+}
+
+$query = $con->prepare($query);
+$query->execute($params);
+
+
+/*
+if (!empty($idCategoria)) {
+    $comando = $con->prepare("SELECT id, nombre, precio, descuento FROM productos WHERE activo=1 $filtro AND id_categoria = ? $order");
+    $comando->execute([$idCategoria]);
+} else {
+    $comando = $con->prepare("SELECT id, nombre, precio, descuento FROM productos WHERE activo=1 $filtro $order");
+    $comando->execute();
+}*/
+
+$resultado = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $sqlCategorias = $con->prepare("SELECT id, nombre FROM categorias WHERE activo=1");
 $sqlCategorias->execute();
